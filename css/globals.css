@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 :root {
+  --primary: #231F20;
+  --primary-variant-1: #393536;
+  --primary-variant-2: #4F4C4D;
+  --primary-variant-3: #919191;
   --accent: #AA8628;
   --accent-variant: #85691E;
 }
@@ -23,6 +27,7 @@
   color: white;
   transition: 0.3s all;
   user-select: none;
+  height: fit-content;
 }
 
 .button.disabled {
@@ -44,7 +49,7 @@
 }
 
 .button.secondary {
-  border: 1px solid #7B7979;
+  border: 1px solid var(--primary-variant-2);
 }
 
 .button.secondary:hover {
@@ -81,12 +86,12 @@
 }
 
 .mini-button.secondary {
-  color: #919191;
-  border: 1px solid #919191;
+  color: var(--primary-variant-3);
+  border: 1px solid var(--primary-variant-3);;
 }
 
 .mini-button.secondary path {
-  fill: #919191;
+  fill: var(--primary-variant-3);;
 }
 
 .mini-button.secondary:hover {
@@ -118,12 +123,29 @@
   }
 }
 
+.question-title, .answer-title, .question-title-input label, .answer-title-input label {
+  border-radius: 10px;
+  color: white;
+  font-weight: 600;
+  font-size:16px;
+  padding: 5px 16px;
+  width: fit-content;
+}
+
+.question-title, .question-title-input label {
+  background-color: #5B89A7;
+}
+
+.answer-title, .answer-title-input label {
+  background-color: #F57E3A;
+}
+
 .answer {
   color: white;
   font-size: 20px;
   width: 100%;
   min-height: 150px;
-  background-color: #393536;
+  background-color: var(--primary-variant-1);
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -139,5 +161,40 @@
   position: absolute;
   left: 0;
   top: 0;
-  backdrop-filter: blur(15px);
+  backdrop-filter: blur(8px);
+}
+
+/* INPUT */
+
+.input-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+input, textarea {
+  outline: none;
+  border-radius: 10px;
+  padding: 14px;
+  background-color: var(--primary-variant-1);
+  color: white;
+}
+
+input::placeholder, textarea::placeholder {
+  color: var(--primary-variant-3);
+}
+
+input:focus, textarea:focus {
+  background-color: var(--primary-variant-2);
+  outline: 1px solid var(--primary-variant-3);
+}
+
+label {
+  font-size: 14px;
+  color: white;
+  font-weight: 500;
+}
+
+textarea {
+  min-height: 150px;
 }

@@ -1,10 +1,10 @@
 import React from 'react'
 
 const Button = (props) => {
-  const { label, icon, type, additionalClass, onClickFunction } = props;
+  const { label, icon, type, additionalClass, onClickFunction, miniButton } = props;
 
   return (
-    <div onClick={onClickFunction} className={`button ${type} ${additionalClass}`}>
+    <div onClick={onClickFunction} className={`${miniButton ? 'mini-button' : 'button'} ${type} ${additionalClass}`}>
       {icon}
       <span>
         {label}

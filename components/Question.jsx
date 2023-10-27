@@ -1,6 +1,6 @@
 import { SplideSlide } from '@splidejs/react-splide';
 import { useState } from 'react';
-import MiniButton from './MiniButton';
+import Button from './Button';
 
 const Question = (props) => {
   const [isAnswerVisible, setIsAnswerVisible] = useState(false);
@@ -17,21 +17,22 @@ const Question = (props) => {
     <SplideSlide>
       <div className='flex flex-col gap-[60px]'>
         <div className='flex flex-col gap-[20px]'>
-          <p className='bg-[#5B89A7] rounded-[10px] text-white font-semibold text-[16px] p-[5px_16px] w-fit'>Pitanje broj {questionNum}</p>
+          <p className='question-title'>Pitanje broj {questionNum}</p>
           <p className='text-[20px] text-white'>{question}</p>
         </div>
         <div className='flex flex-col gap-[20px]'>
-          <p className='bg-[#F57E3A] rounded-[10px] text-white font-semibold text-[16px] p-[5px_16px] w-fit'>Odgovor na pitanje broj {questionNum}</p>
+          <p className='answer-title'>Odgovor na pitanje broj {questionNum}</p>
           <div className='answer'>
             <p>{isAnswerVisible ? answer : 'Nema cheatovanja :)'}</p>
             <div className={`overlay ${isAnswerVisible ? 'hidden' : 'block'}`}></div>
           </div>
-          <MiniButton
+          <Button
             type="primary"
             label="Otkrij odgovor"
             icon={eyeIcon}
             additionalClass={`ml-auto ${isAnswerVisible ? 'disabled' : ''}`}
             onClickFunction={showAnswer}
+            miniButton={true}
           />
         </div>
       </div>
