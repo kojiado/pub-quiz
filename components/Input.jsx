@@ -5,13 +5,13 @@ const Input = ({label, placeholder, type, id, textarea, additionalClass, onChang
     <div className={`${additionalClass} input-box`}>
       {textarea ? (
         <div className={`${additionalClass} input-box`}>
-          <label for={id}>{label}</label>
-          <textarea onChange={onChange} value={value} rows={4} placeholder={placeholder} type={type} id={id}/>
+          <label htmlFor={id}>{label}</label>
+          <textarea required onChange={onChange} value={value} rows={4} placeholder={placeholder} type={type} id={id}/>
         </div>
       ):(
         <div className={`${additionalClass} input-box`}>
-          <label for={id}>{label}</label>
-          <input onChange={onChange} value={value} placeholder={placeholder} type={type} id={id}/>
+          <label htmlFor={id}>{label}</label>
+          <input required onChange={onChange} value={value} placeholder={placeholder} type={type} id={id}/>
         </div>
       )}
     </div>

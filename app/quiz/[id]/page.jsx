@@ -3,22 +3,18 @@
 import { useRef, useState, useEffect } from 'react';
 import { useQuiz } from "@/hooks/useQuiz";
 
-/* COMPONENTS */
 import Question from '@/components/Question';
 import Button from '@/components/Button';
 
-/* SPLIDER */
 import { Splide, SplideSlide, } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 
 export default function Quiz({ params }) {
   const id = params.id;
-  const [currentQuiz, setCurrentQuiz] = useState([]);
+  const currentQuiz = useQuiz(id);
   const splideRef = useRef(null);
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [totalSlides, setTotalSlides] = useState(0);
-
-  /* SLIDER CUSTOM ARROWS */
 
   useEffect(() => {
     if (splideRef.current) {
@@ -42,21 +38,14 @@ export default function Quiz({ params }) {
     splideRef.current.splide.go('-1');
   };
 
-  /* QUIZ DATA FETCHING */
-
-  const fetchQuiz = async () => {
-    const quizData = await useQuiz(id);
-    setCurrentQuiz(quizData);
-  }
-
   useEffect(() => {
-    fetchQuiz();
-  }, [])
+    setTotalSlides(currentQuiz?.questions.length);
+  }, [currentQuiz])
 
   return (
     <>
       <div className="flex flex-col gap-[60px] pb-[160px]">
-        <h2 className='text-white text-[20px] underline'>Kviz: <span className="font-bold">{currentQuiz.name}</span></h2>
+        <h2 className='text-white text-[20px] underline'>Kviz: <span className="font-bold">{currentQuiz?.name}</span></h2>
         <Splide
           ref={splideRef}
           options={{

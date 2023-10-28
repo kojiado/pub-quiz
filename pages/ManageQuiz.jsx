@@ -6,20 +6,17 @@ import Button from "@/components/Button"
 import { useState, useEffect } from "react"
 import { plusIcon, rocketIcon } from "@/content/icons"
 import { useQuestions } from "@/hooks/useQuestions"
+import { useRouter } from 'next/navigation'
 
-
-export default function ManageQuiz ({questionsList}) {
+export default function ManageQuiz ({questionsList, requestType, id, name}) {
+  const router = useRouter()
   const [quizName, setQuizName] = useState("");
   const [questions, setQuestions] = useState([]);
-  const [oldQuestions, setOldQuestions] = useState([]);
-
-  /* QUIZ NAME */
+  const oldQuestions = useQuestions();
 
   const handleQuizNameChange = (e) => {
     setQuizName(e.target.value);
   }
-
-  /* QUIZ QUESTIONS MANAGER */
 
   const addQuestion = () => {
     const newQuestion = {
@@ -42,11 +39,10 @@ export default function ManageQuiz ({questionsList}) {
     setQuestions(updatedQuestions);
   };
    
-  /* RECYCLING OLD QUESTIONS */
 
   const addOldQuestion = () => {
     if (oldQuestions.length > 0) {
-      const uniqueQuestions = oldQuestions.filter((question) => !isQuestionAlreadyInList(question));
+      const uniqueQuestions = oldQuestions.filter((question) => !isQuestionAlreadyInList(questions, question));
   
       if (uniqueQuestions.length > 0) {
         const randomIndex = Math.floor(Math.random() * uniqueQuestions.length);
@@ -64,52 +60,132 @@ export default function ManageQuiz ({questionsList}) {
     }
   }
 
-  const isQuestionAlreadyInList = (questionToCheck) => {
-    return questions.some((question) => (
+  const isQuestionAlreadyInList = (questionsToCheck, questionToCheck) => {
+    return questionsToCheck.some((question) => (
       question.question === questionToCheck.question &&
       question.answer === questionToCheck.answer
     ));
   }
 
-  const fetchOldQuestions = async () => {
-    const oldQuestionsData = await useQuestions();
-    setOldQuestions(oldQuestionsData);
+  const addNewQuestionsForRecycle = () => {
+    const newQuestionsForRecycle = questions.filter(
+      (question) => !isQuestionAlreadyInList(oldQuestions, question) && !isQuestionEmpty(question)
+    );
+
+    newQuestionsForRecycle.forEach(async (question) => {
+      const newQuestion = {
+        question: question.question,
+        answer: question.answer,
+      };
+      try {
+        const res = await fetch("http://localhost:3001/questions", {
+          method: "POST",
+          body: JSON.stringify(newQuestion),
+          headers: {
+            "content-type": "application/json",
+          },
+        });
+        if (res.ok) {
+          console.log("Question added to old questions list");
+          setOldQuestions([...oldQuestions, question]);
+        } else {
+          console.log("Failed to add question to old questions list");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    });
+  };
+
+  const isQuestionEmpty = (questionToCheck) => {
+    return !questionToCheck.question && !questionToCheck.answer;
   }
 
+
   useEffect(() => {
-    fetchOldQuestions();
     setQuestions(questionsList);
-  }, [])
+    setQuizName(name);
+  }, [questionsList,name])
 
-  /* QUIZ MANAGE DONE */
 
-  const createQuiz = () => {
+  const createQuiz = async (e) => {
+    e.preventDefault()
     const quizData = {
-      id: Date.now(),
       name: quizName,
       questions,
     };
 
-    console.log(quizData);
-  };
+    try {
+      const res = await fetch('http://localhost:3001/quizzes',{
+        method: 'POST',
+        body: JSON.stringify(quizData),
+        headers: {
+          'content-type': 'application/json'
+        }
+      })
+      console.log(res)
+      if(res.ok){
+        await addNewQuestionsForRecycle();
+        router.push('/');
+      }else{
+        console.log("Oops! Something is wrong.")
+      }
+    } catch (error) {
+        console.log(error)
+    }
+  }
+
+  const updateQuiz = async (quizId) => {
+    const quizData = {
+      name: quizName,
+      questions,
+    };
+
+    try {
+      const res = await fetch(`http://localhost:3001/quizzes/${quizId}`,{
+        method: 'PUT',
+        body: JSON.stringify(quizData),
+        headers: {
+          'content-type': 'application/json'
+        }
+      })
+      console.log(res)
+      if(res.ok){
+        await addNewQuestionsForRecycle();
+        router.push('/');
+      }else{
+        console.log("Oops! Something is wrong.")
+      }
+    } catch (error) {
+        console.log(error)
+    }
+  }
 
   return (
     <div className="flex flex-col gap-[40px]">
-      <h2 className='text-white text-[30px] font-bold'>Novi kviz</h2>
-      <div className="flex flex-col ss:flex-row justify-between items-center gap-[40px]">
+      <div className='flex flex-col'>
+        <h2 className='text-white text-[22px] font-bold'>
+          {requestType === 'Post' ? 'Novi Kviz' : 'Uređivanje kviza'}
+        </h2>
+        <p className='text-[16px] text-primary_variant_3'>
+          {requestType === 'Post' ? 'Popunite formu ispod kako biste unijeli novi kviz.' : 'Uredite podatke kviza prije spremanja.'}
+        </p>
+      </div>
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-[16px]">
         <Input 
           type="text"
           label="Ime kviza"
           placeholder="Unesi ime kviza"
           textarea={false}
-          additionalClass="w-full ss:max-w-[400px]"
+          additionalClass="w-full sm:max-w-[400px]"
           onChange={handleQuizNameChange}
+          value={quizName}
         />
         <Button 
           type="secondary"
           label="Recikliraj pitanje"
           onClickFunction={addOldQuestion}
-          additionalClass="w-full ss:w-fit"
+          additionalClass="w-full sm:w-fit"
         />
       </div>
       {questions?.map((question, index) => (
@@ -132,9 +208,9 @@ export default function ManageQuiz ({questionsList}) {
         />
         <Button
           type="primary"
-          label="Kreiraj kviz"
+          label={requestType === 'Post' ? 'Kreiraj kviz' : 'Spremi promjene'}
           icon={rocketIcon}
-          onClickFunction={createQuiz}
+          onClickFunction={requestType === 'Post' ? createQuiz : () => updateQuiz(id)}
           additionalClass="w-full ss:w-fit"
         />
       </div>

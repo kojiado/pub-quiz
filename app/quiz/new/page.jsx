@@ -6,6 +6,7 @@ export default async function Page() {
   return (
     <ManageQuiz
       questionsList={questionList}
+      requestType="Post"
     />
   )
 }

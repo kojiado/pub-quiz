@@ -19,7 +19,7 @@ const NewQuestion = ({questionNum, question, answer, onQuestionChange, onAnswerC
         <Input
           type="text"
           label="Pitanje"
-          placeholder="Unesi pitane.."
+          placeholder="Unesi pitanje.."
           textarea={true}
           additionalClass="w-full question-title-input"
           value={question}
