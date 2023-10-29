@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
-export function useDeleteQuiz(id) {
-  const deleteQuiz = async () => {
+export function useDeleteQuiz() {
+  const deleteQuiz = async (id) => {
     try {
       const res = await fetch(`http://localhost:3001/quizzes/${id}`, {
         method: 'DELETE',

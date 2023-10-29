@@ -1,178 +1,188 @@
 {
   "quizzes": [
     {
-      "name": "Enterwell Quiz",
+      "id": 1,
+      "name": "Globetrotter's Challenge",
       "questions": [
         {
           "id": 1,
-          "question": "Who was the English mathematician and writer widely considered as the worldq's first computer programmer for her work on Charles Babbage's proposed mechanical general-purpose computer, the Analytical Engine?",
-          "answer": "Ada Lovelace3"
+          "question": "What is the capital of France?",
+          "answer": "Paris"
         },
-        {
-          "id": 1698460551751,
-          "question": "Ado babas",
-          "answer": "sdas"
-        }
-      ],
-      "id": 123
-    },
-    {
-      "name": "Who was the English2",
-      "questions": [
         {
           "id": 2,
-          "question": "Ado Baba was the English mathematician and writer widely considered as the worldq's first computer programmer for her work on Charles Babbage's proposed mechanical general-purpose computer, the Analytical Engine?",
-          "answer": "Ada Lovelace"
-        },
+          "question": "Who wrote Romeo and Juliet?",
+          "answer": "William Shakespeare"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Literary Mastermind",
+      "questions": [
         {
           "id": 3,
-          "question": "Who was the English mathematician and writer widely considered as the worldq's first computer programmer for her work on Charles Babbage's proposed mechanical general-purpose computer, the Analytical Engine?",
-          "answer": "Ada Lovelace"
+          "question": "What is the largest planet in our solar system?",
+          "answer": "Jupiter"
         },
         {
           "id": 4,
-          "question": "Who was the English mathematician and writer widely considered as the worldq's first computer programmer for her work on Charles Babbage's proposed mechanical general-purpose computer, the Analytical Engine?",
-          "answer": "Ada Lovelace"
-        },
-        {
-          "id": 1698457072830,
-          "question": "hocels",
-          "answer": "aaaa"
-        },
-        {
-          "id": 1698460306034,
-          "question": "dasd",
-          "answer": "dasdas"
-        },
-        {
-          "id": 1698460315241,
-          "question": "HOCEL TO KAKO JE5",
-          "answer": "IIDEL TO"
-        },
-        {
-          "id": 1698534156085,
-          "question": "hocel",
-          "answer": "aaaa"
-        },
-        {
-          "id": 1698534159933,
-          "question": "Who was the English mathematician and writer widely considered as the worldq's first computer programmer for her work on Charles Babbage's proposed mechanical general-purpose computer, the Analytical Engine?",
-          "answer": "Ada Lovelace3"
-        },
-        {
-          "id": 1698534160445,
-          "question": "Ado baba",
-          "answer": "sdas"
-        },
-        {
-          "id": 1698534160901,
-          "question": "dasd",
-          "answer": "asd"
-        },
-        {
-          "id": 1698534161333,
-          "question": "HOCEL TO KAKO JE",
-          "answer": "IIDEL TO"
-        },
-        {
-          "id": 1698534161750,
-          "question": "HOCEL TO KAKO JE2",
-          "answer": "IIDEL TO2"
-        },
-        {
-          "id": 1698534161982,
-          "question": "dasdasd",
-          "answer": "asdasd"
-        },
-        {
-          "id": 1698534162221,
-          "question": "Ado test",
-          "answer": "test2"
-        },
-        {
-          "id": 1698534167749,
-          "question": "Ado babas",
-          "answer": "sdas"
+          "question": "Who painted the Mona Lisa?",
+          "answer": "Leonardo da Vinci"
         }
-      ],
-      "id": 2
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Cultural Explorer",
+      "questions": [
+        {
+          "id": 5,
+          "question": "What is the currency of Japan?",
+          "answer": "Japanese Yen"
+        },
+        {
+          "id": 6,
+          "question": "Who is the author of the Harry Potter series?",
+          "answer": "J.K. Rowling"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Marine Marvels",
+      "questions": [
+        {
+          "id": 7,
+          "question": "What is the largest mammal in the world?",
+          "answer": "Blue Whale"
+        },
+        {
+          "id": 8,
+          "question": "Who is the first President of the United States?",
+          "answer": "George Washington"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Science Enigma",
+      "questions": [
+        {
+          "id": 9,
+          "question": "What is the boiling point of water in Celsius?",
+          "answer": "100 degrees"
+        },
+        {
+          "id": 10,
+          "question": "Who painted the Starry Night?",
+          "answer": "Vincent van Gogh"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Golden Element Quest",
+      "questions": [
+        {
+          "id": 11,
+          "question": "What is the chemical symbol for gold?",
+          "answer": "Au"
+        },
+        {
+          "id": 12,
+          "question": "Who wrote the play 'Hamlet'?",
+          "answer": "William Shakespeare"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Einstein's Legacy",
+      "questions": [
+        {
+          "id": 13,
+          "question": "What is the largest desert in the world?",
+          "answer": "Sahara Desert"
+        },
+        {
+          "id": 14,
+          "question": "Who discovered the theory of relativity?",
+          "answer": "Albert Einstein"
+        }
+      ]
     }
   ],
   "questions": [
     {
       "id": 1,
-      "question": "Who was the English mathematician and writer widely considered as the worldq's first computer programmer for her work on Charles Babbage's proposed mechanical general-purpose computer, the Analytical Engine?",
-      "answer": "Ada Lovelace"
+      "question": "What is the capital of France?",
+      "answer": "Paris"
     },
     {
-      "question": "Who was the English mathematician and writer widely considered as the worldq's first computer programmer for her work on Charles Babbage's proposed mechanical general-purpose computer, the Analytical Engine?",
-      "answer": "Ada Lovelace",
-      "id": 2
+      "id": 2,
+      "question": "Who wrote Romeo and Juliet?",
+      "answer": "William Shakespeare"
     },
     {
-      "question": "Ado test",
-      "answer": "test2",
-      "id": 3
+      "id": 3,
+      "question": "What is the largest planet in our solar system?",
+      "answer": "Jupiter"
     },
     {
-      "question": "Ado baba",
-      "answer": "sdas",
-      "id": 4
+      "id": 4,
+      "question": "Who painted the Mona Lisa?",
+      "answer": "Leonardo da Vinci"
     },
     {
-      "question": "hocel",
-      "answer": "aaaa",
-      "id": 5
+      "id": 5,
+      "question": "What is the currency of Japan?",
+      "answer": "Japanese Yen"
     },
     {
-      "question": "dasdasd",
-      "answer": "asdasd",
-      "id": 6
+      "id": 6,
+      "question": "Who is the author of the Harry Potter series?",
+      "answer": "J.K. Rowling"
     },
     {
-      "question": "dasd",
-      "answer": "asd",
-      "id": 7
+      "id": 7,
+      "question": "What is the largest mammal in the world?",
+      "answer": "Blue Whale"
     },
     {
-      "question": "dasd",
-      "answer": "dasdas",
-      "id": 8
+      "id": 8,
+      "question": "Who is the first President of the United States?",
+      "answer": "George Washington"
     },
     {
-      "question": "HOCEL TO KAKO JE",
-      "answer": "IIDEL TO",
-      "id": 9
+      "id": 9,
+      "question": "What is the boiling point of water in Celsius?",
+      "answer": "100 degrees"
     },
     {
-      "question": "HOCEL TO KAKO JE2",
-      "answer": "IIDEL TO2",
-      "id": 10
+      "id": 10,
+      "question": "Who painted the Starry Night?",
+      "answer": "Vincent van Gogh"
     },
     {
-      "question": "Ado Baba was the English mathematician and writer widely considered as the worldq's first computer programmer for her work on Charles Babbage's proposed mechanical general-purpose computer, the Analytical Engine?",
-      "answer": "Ada Lovelace",
-      "id": 11
+      "id": 11,
+      "question": "What is the chemical symbol for gold?",
+      "answer": "Au"
     },
     {
-      "question": "hocels",
-      "answer": "aaaa",
-      "id": 12
+      "id": 12,
+      "question": "Who wrote the play 'Hamlet'?",
+      "answer": "William Shakespeare"
     },
     {
-      "question": "Ado babas",
-      "answer": "sdas",
-      "id": 13
+      "id": 13,
+      "question": "What is the largest desert in the world?",
+      "answer": "Sahara Desert"
     },
     {
-      "question": "HOCEL TO KAKO JE5",
-      "answer": "IIDEL TO",
-      "id": 14
-    },
-    {
-      "question": "Who was the English mathematician and writer widely considered as the worldq's first computer programmer for her work on Charles Babbage's proposed mechanical general-purpose computer, the Analytical Engine?",
-      "answer": "Ada Lovelace3",
-      "id": 15
+      "id": 14,
+      "question": "Who discovered the theory of relativity?",
+      "answer": "Albert Einstein"
     }
   ]
 }

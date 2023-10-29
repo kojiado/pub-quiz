@@ -1,5 +1,5 @@
 import ManageQuiz from "@/components/quiz/ManageQuiz"
-import useEmptyQuestionsList from "@/hooks/useEmptyQuestionsList";
+import CreateEmptyQuestions from "@/lib/CreateEmptyQuestions";
 
 export const metadata = {
   title: 'Novi Kviz',
@@ -7,7 +7,7 @@ export const metadata = {
 }
 
 export default async function Page() {
-  const questionList = useEmptyQuestionsList();
+  const questionList = CreateEmptyQuestions();
 
   return (
     <ManageQuiz

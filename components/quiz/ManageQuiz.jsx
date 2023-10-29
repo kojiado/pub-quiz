@@ -3,6 +3,9 @@
 import Input from "@/components/ui/Input"
 import NewQuestion from "./NewQuestion"
 import Button from "@/components/ui/Button"
+import { usePostQuestions } from "@/hooks/usePostQuestions"
+import { usePutQuiz } from "@/hooks/usePutQuiz"
+import { usePostQuiz } from "@/hooks/usePostQuiz"
 import { useQuiz } from "@/hooks/useQuiz"
 import { useState, useEffect } from "react"
 import { plusIcon, rocketIcon } from "@/utils/icons"
@@ -16,6 +19,9 @@ export default function ManageQuiz ({questionsList, requestType, id}) {
   const [quizName, setQuizName] = useState("");
   const [questions, setQuestions] = useState([]);
   const oldQuestions = useQuestions();
+  const { postQuiz } = usePostQuiz();
+  const { putQuiz } = usePutQuiz();
+  const { postQuestions } = usePostQuestions();
 
   const handleQuizNameChange = (e) => {
     setQuizName(e.target.value);
@@ -67,28 +73,7 @@ export default function ManageQuiz ({questionsList, requestType, id}) {
       (question) => !isQuestionAlreadyInList(oldQuestions, question) && !isQuestionEmpty(question)
     );
 
-    newQuestionsForRecycle.forEach(async (question) => {
-      const newQuestion = {
-        question: question.question,
-        answer: question.answer,
-      };
-      try {
-        const res = await fetch("http://localhost:3001/questions", {
-          method: "POST",
-          body: JSON.stringify(newQuestion),
-          headers: {
-            "content-type": "application/json",
-          },
-        });
-        if (res.ok) {
-          setOldQuestions([...oldQuestions, question]);
-        } else {
-          console.log("Failed to add question to old questions list");
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    });
+    postQuestions(newQuestionsForRecycle);
   };
 
   const isQuestionAlreadyInList = (questionsToCheck, questionToCheck) => {
@@ -111,31 +96,20 @@ export default function ManageQuiz ({questionsList, requestType, id}) {
     }
   }, [quiz])
 
-  const createQuiz = async (e) => {
-    e.preventDefault()
+  const createQuiz = async () => {
     const quizData = {
       name: quizName,
       questions,
     };
 
-    try {
-      const res = await fetch('http://localhost:3001/quizzes',{
-        method: 'POST',
-        body: JSON.stringify(quizData),
-        headers: {
-          'content-type': 'application/json'
-        }
-      })
-      console.log(res)
-      if(res.ok){
-        await addNewQuestionsForRecycle();
-        router.push('/');
-        toast.success("Kviz uspješno kreiran.")
-      }else{
-        toast.success("Kviz nije kreiran, pokušaj ponovo.")
-      }
-    } catch (error) {
-        console.log(error)
+    const success = await postQuiz(quizData);
+
+    if (success) {
+      await addNewQuestionsForRecycle();
+      router.push('/');
+      toast.success('Kviz uspješno kreiran.');
+    } else {
+      toast.error('Kviz nije kreiran, pokušaj ponovo.');
     }
   }
 
@@ -145,25 +119,14 @@ export default function ManageQuiz ({questionsList, requestType, id}) {
       questions,
     };
 
-    try {
-      const res = await fetch(`http://localhost:3001/quizzes/${quizId}`,{
-        method: 'PUT',
-        body: JSON.stringify(quizData),
-        headers: {
-          'content-type': 'application/json'
-        }
-      })
-      console.log(res)
-      if(res.ok){
-        await addNewQuestionsForRecycle();
-        router.push('/');
-        toast.success("Promjene na kvizu sačuvane.")
-      }else{
-        console.log("Oops! Something is wrong.")
-        toast.error("Promjene nisu sačuvane, pokušaj ponovo.")
-      }
-    } catch (error) {
-        console.log(error)
+    const success = await putQuiz(quizId, quizData);
+
+    if (success) {
+      await addNewQuestionsForRecycle();
+      router.push('/');
+      toast.success('Promjene na kvizu sačuvane.');
+    } else {
+      toast.error('Promjene nisu sačuvane, pokušaj ponovo.');
     }
   }
 

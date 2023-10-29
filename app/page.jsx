@@ -4,19 +4,20 @@ import Button from '@/components/ui/Button';
 import Quiz from '@/components/quiz/Quiz'
 import Modal from '@/components/ui/Modal';
 import Link from 'next/link';
+import { useQuizzes } from '@/hooks/useQuizzes';
 import { plusIcon } from '@/utils/icons';
 import { useState, useEffect } from 'react';
 import { useDeleteQuiz } from '@/hooks/useDeleteQuiz';
 import { toast } from 'react-hot-toast';
 
 export default function Home() {
-  const [quizzes, setQuizzes] = useState([]);
-
+  //const [quizzes, setQuizzes] = useState([]);
   const [refresher, setRefresher] = useState(true);
+  const quizzes = useQuizzes(refresher);
   const [currentQuizId, setCurrentQuizId] = useState('');
   const [currentQuizName, setCurrentQuizName] = useState('');
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const {deleteQuiz} = useDeleteQuiz(currentQuizId);
+  const {deleteQuiz} = useDeleteQuiz();
 
   const openDeleteModal = (quizId,name) => {
     setIsDeleteModalOpen(true);
@@ -33,25 +34,10 @@ export default function Home() {
   const handleDeleteQuiz = async () => {
     await deleteQuiz(currentQuizId);
     const updatedQuizzes = quizzes.filter(quiz => quiz.di !== currentQuizId);
-    setQuizzes(updatedQuizzes);
     closeDeleteModal();
     setRefresher(!refresher);
     toast.success('Kviz uspješno obrisan.');
   };
-
-  useEffect(() => {
-    const fetchQuizzes = async () => {
-      try {
-        const res = await fetch('http://localhost:3001/quizzes');
-        const data = await res.json();
-        setQuizzes(data);
-      } catch (error) {
-        console.error('Error fetching quizzes:', error);
-      }
-    };
-
-    fetchQuizzes();
-  }, [refresher]);
 
   return (
     <div className=''>
