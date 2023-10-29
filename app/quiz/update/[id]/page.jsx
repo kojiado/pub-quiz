@@ -1,20 +1,22 @@
-"use client"
+import ManageQuiz from "@/components/quiz/ManageQuiz";
 
-import ManageQuiz from "@/pages/ManageQuiz";
-import { useQuiz } from "@/hooks/useQuiz";
+export async function generateMetadata({ params, searchParams }, parent) {
+  const id = params.id
+  const quiz = await fetch(`http://localhost:3001/quizzes/${id}`).then((res) => res.json())
+ 
+  return {
+    title: `Uređivanje - ${quiz.name}`,
+    description: `Uređivanje - ${quiz.name}`
+  }
+}
 
 export default function Update({ params }) {
   const id = params.id;
-  const quiz = useQuiz(id);
-
-  console.log(quiz);
 
   return (
     <ManageQuiz
-      questionsList={quiz?.questions}
       requestType="Put"
       id={id}
-      name={quiz?.name}
     />
   )
 }

@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 
 export function useDeleteQuiz(id) {
-  const [isDeleted, setIsDeleted] = useState(false);
-
   const deleteQuiz = async () => {
     try {
       const res = await fetch(`http://localhost:3001/quizzes/${id}`, {
@@ -13,7 +11,7 @@ export function useDeleteQuiz(id) {
       });
 
       if (res.status === 204) {
-        setIsDeleted(true);
+        console.log('Quiz Successfully Deleted');
       } else {
         console.error('Error deleting Quiz:', res.status);
       }

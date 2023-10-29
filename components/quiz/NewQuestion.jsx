@@ -1,6 +1,6 @@
-import Button from "./Button"
-import Input from "./Input"
-import { trashIcon } from "@/content/icons"
+import Button from "../ui/Button"
+import Input from "../ui/Input"
+import { trashIcon } from "@/utils/icons"
 
 const NewQuestion = ({questionNum, question, answer, onQuestionChange, onAnswerChange, deleteQuestion}) => {
   return (

@@ -1,15 +1,18 @@
 "use client"
 
-import Input from "@/components/Input"
-import NewQuestion from "../components/NewQuestion"
-import Button from "@/components/Button"
+import Input from "@/components/ui/Input"
+import NewQuestion from "./NewQuestion"
+import Button from "@/components/ui/Button"
+import { useQuiz } from "@/hooks/useQuiz"
 import { useState, useEffect } from "react"
-import { plusIcon, rocketIcon } from "@/content/icons"
+import { plusIcon, rocketIcon } from "@/utils/icons"
 import { useQuestions } from "@/hooks/useQuestions"
 import { useRouter } from 'next/navigation'
+import { toast } from 'react-hot-toast';
 
-export default function ManageQuiz ({questionsList, requestType, id, name}) {
+export default function ManageQuiz ({questionsList, requestType, id}) {
   const router = useRouter()
+  const quiz = useQuiz(id);
   const [quizName, setQuizName] = useState("");
   const [questions, setQuestions] = useState([]);
   const oldQuestions = useQuestions();
@@ -38,7 +41,6 @@ export default function ManageQuiz ({questionsList, requestType, id, name}) {
     );
     setQuestions(updatedQuestions);
   };
-   
 
   const addOldQuestion = () => {
     if (oldQuestions.length > 0) {
@@ -55,16 +57,9 @@ export default function ManageQuiz ({questionsList, requestType, id, name}) {
         };
   
         setQuestions([...questions, newQuestion]);
-        console.log(randomQuestion);
+        toast.success("Pitanje reciklirano.");
       }
     }
-  }
-
-  const isQuestionAlreadyInList = (questionsToCheck, questionToCheck) => {
-    return questionsToCheck.some((question) => (
-      question.question === questionToCheck.question &&
-      question.answer === questionToCheck.answer
-    ));
   }
 
   const addNewQuestionsForRecycle = () => {
@@ -86,7 +81,6 @@ export default function ManageQuiz ({questionsList, requestType, id, name}) {
           },
         });
         if (res.ok) {
-          console.log("Question added to old questions list");
           setOldQuestions([...oldQuestions, question]);
         } else {
           console.log("Failed to add question to old questions list");
@@ -97,16 +91,25 @@ export default function ManageQuiz ({questionsList, requestType, id, name}) {
     });
   };
 
+  const isQuestionAlreadyInList = (questionsToCheck, questionToCheck) => {
+    return questionsToCheck.some((question) => (
+      question.question === questionToCheck.question &&
+      question.answer === questionToCheck.answer
+    ));
+  }
+
   const isQuestionEmpty = (questionToCheck) => {
     return !questionToCheck.question && !questionToCheck.answer;
   }
 
-
   useEffect(() => {
-    setQuestions(questionsList);
-    setQuizName(name);
-  }, [questionsList,name])
-
+    if(questionsList) {
+      setQuestions(questionsList);
+    } else {
+      setQuestions(quiz?.questions);
+      setQuizName(quiz?.name)
+    }
+  }, [quiz])
 
   const createQuiz = async (e) => {
     e.preventDefault()
@@ -127,8 +130,9 @@ export default function ManageQuiz ({questionsList, requestType, id, name}) {
       if(res.ok){
         await addNewQuestionsForRecycle();
         router.push('/');
+        toast.success("Kviz uspješno kreiran.")
       }else{
-        console.log("Oops! Something is wrong.")
+        toast.success("Kviz nije kreiran, pokušaj ponovo.")
       }
     } catch (error) {
         console.log(error)
@@ -153,8 +157,10 @@ export default function ManageQuiz ({questionsList, requestType, id, name}) {
       if(res.ok){
         await addNewQuestionsForRecycle();
         router.push('/');
+        toast.success("Promjene na kvizu sačuvane.")
       }else{
         console.log("Oops! Something is wrong.")
+        toast.error("Promjene nisu sačuvane, pokušaj ponovo.")
       }
     } catch (error) {
         console.log(error)

@@ -1,12 +1,13 @@
 "use client"
 
-import Button from '@/components/Button';
-import Quiz from '@/components/Quiz'
-import Modal from '@/components/Modal';
+import Button from '@/components/ui/Button';
+import Quiz from '@/components/quiz/Quiz'
+import Modal from '@/components/ui/Modal';
 import Link from 'next/link';
-import { plusIcon } from '@/content/icons';
+import { plusIcon } from '@/utils/icons';
 import { useState, useEffect } from 'react';
 import { useDeleteQuiz } from '@/hooks/useDeleteQuiz';
+import { toast } from 'react-hot-toast';
 
 export default function Home() {
   const [quizzes, setQuizzes] = useState([]);
@@ -35,6 +36,7 @@ export default function Home() {
     setQuizzes(updatedQuizzes);
     closeDeleteModal();
     setRefresher(!refresher);
+    toast.success('Kviz uspješno obrisan.');
   };
 
   useEffect(() => {

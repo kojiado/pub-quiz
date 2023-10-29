@@ -6,7 +6,7 @@ const Modal = ({isOpen, closeModal, children, modalTitle}) => {
   if (!isOpen) return null;
 
   return (
-    <div className={`${isOpen ? 'flex' : 'hidden'} flex-col gap-[40px] min-w-[400px] bg-primary_variant_1 fixed left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%] p-[28px] shadow-[0px_0px_20px_rgba(0,0,0,0.3)] rounded-[20px]`}>
+    <div className={`${isOpen ? 'flex' : 'hidden'} flex-col gap-[40px] w-[calc(100%-16vw)] ss:w-[400px] bg-primary_variant_1 fixed left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%] p-[28px] shadow-[0px_0px_20px_rgba(0,0,0,0.3)] rounded-[20px]`}>
       <div className='flex justify-between items-center'>
         <h4 className='text-white text-[16px] font-semibold underline'>{modalTitle}</h4>
         <div onClick={closeModal} className='flex w-[50px] h-[50px] items-center justify-center rounded-full border-[1px] border-solid border-primary_variant_3 cursor-pointer hover:bg-primary_variant_2'>

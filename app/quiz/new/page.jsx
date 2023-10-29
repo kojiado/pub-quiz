@@ -1,7 +1,13 @@
-import ManageQuiz from "@/pages/ManageQuiz"
+import ManageQuiz from "@/components/quiz/ManageQuiz"
+import useEmptyQuestionsList from "@/hooks/useEmptyQuestionsList";
+
+export const metadata = {
+  title: 'Novi Kviz',
+  description: "Novi kviz"
+}
 
 export default async function Page() {
-  const questionList = generateEmptyQuestionsList();
+  const questionList = useEmptyQuestionsList();
 
   return (
     <ManageQuiz
@@ -9,20 +15,4 @@ export default async function Page() {
       requestType="Post"
     />
   )
-}
-
-function generateEmptyQuestionsList() {
-  const emptyQuestionsList = [];
-
-  for (let i = 1; i <= 15; i++) {
-    const newQuestion = {
-      id: Date.now() + i,
-      question: "",
-      answer: "",
-    };
-
-    emptyQuestionsList.push(newQuestion);
-  }
-
-  return emptyQuestionsList;
 }
