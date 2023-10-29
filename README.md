@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Pub Quiz App
 
-## Getting Started
+![Pub Quiz](https://github.com/kojiado/pub-quiz/assets/127887180/4faea301-5b26-474d-b913-17b813138072)
 
-First, run the development server:
+## Overview
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+The Pub Quiz App is a web application built with Next.js that allows administrators to create, edit, manage, and send quizzes to users. This README provides an overview of the project and its features.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- **Quiz Creation**: Users have the power to craft engaging quizzes effortlessly. Create your questions and answers, or recycle questions from previous quizzes if you're feeling nostalgic.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **Quiz Editing**: Got some changes to make? No problem! You can easily update your quizzes, swap out questions, and fine-tune your content.
 
-## Learn More
+- **Quiz Deletion**: If a quiz has run its course or no longer suits your fancy, you can simply delete it. A clean slate for new challenges.
 
-To learn more about Next.js, take a look at the following resources:
+- **Start Quiz**: Participants can dive into the quiz excitement with a single click. As you progress, questions are presented to you, but there's a twist—answers are blurred, adding an element of surprise.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Reveal Answers**: Ready to know if you're right? You have the option to unveil the answer by clicking a button. Compare your response and learn on the go.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- **Question Recycling**: Stuck in a creative rut? No worries! Reuse questions from your previous quizzes, giving you a helping hand when inspiration runs dry.
 
-## Deploy on Vercel
+## Technologies Used
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The Pub Quiz App is built using the following technologies:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- **Next.js**: A popular React framework for developing server-rendered web applications.
+
+- **json-server**: A simple JSON-based backend mock API for fast development and testing.
+
+- **React**: A JavaScript library for building interactive and user-friendly web interfaces.
+
+## Installation
+
+To run the Pub Quiz App locally, follow these steps:
+
+1. Clone the repository: `git clone https://github.com/kojiado/pub-quiz.git`
+2. Install dependencies: `npm install`
+3. Start the Next.js development server: `npm run dev`
+4. Start the json-server for the mock API: `json-server db.json --port 3001`
+
+The application will be accessible at `http://localhost:3000/`.
+
+Please note that for a real-world scenario, you would typically implement authentication and authorization to ensure secure access to these features. In this example, the app allows anyone to create, edit, and delete quizzes for demonstration purposes.
+
+
+Thank you for exploring the Pub Quiz App. If you have any questions or feedback, please feel free to reach out.
+
+Enjoy the quiz experience! 🚀
