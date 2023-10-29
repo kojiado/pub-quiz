@@ -8,7 +8,7 @@ const NewQuestion = ({questionNum, question, answer, onQuestionChange, onAnswerC
       <div className='flex justify-between w-full'>
         <h3 className='text-white text-[24px] font-semibold'>#{questionNum}</h3>
         <Button
-          type="secondary"
+          style="secondary"
           label="Obriši pitanje"
           icon={trashIcon}
           miniButton={true}

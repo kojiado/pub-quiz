@@ -65,13 +65,13 @@ export default function QuizSlideshow({id}) {
       </div>
       <div className='w-full h-auto p-[20px] backdrop-blur-md bg-[rgba(255,255,255,0.05)] fixed left-0 bottom-0 border-b-[1px] border-t-[1px] border-solid border-[#4F4C4D] flex items-center justify-between'>
         <Button
-          type="secondary"
+          style="secondary"
           label="Prethodno pitanje"
           onClickFunction={goToPrevSlide}
           additionalClass={currentSlideIndex === 0 ? 'disabled' : '' }
         />
         <Button
-          type="primary"
+          style="primary"
           label="Sledeće pitanje"
           onClickFunction={goToNextSlide}
           additionalClass={currentSlideIndex === totalSlides - 1 ? 'disabled' : '' }

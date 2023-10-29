@@ -24,7 +24,7 @@ const Question = ({question, answer, questionNum}) => {
             <div className={`overlay ${isAnswerVisible ? 'hidden' : 'block'}`}></div>
           </div>
           <Button
-            type="primary"
+            style="primary"
             label="Otkrij odgovor"
             icon={eyeIcon}
             additionalClass={`ml-auto ${isAnswerVisible ? 'disabled' : ''}`}

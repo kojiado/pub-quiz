@@ -46,13 +46,13 @@ export default function Home() {
           <p className='text-white text-[20px] font-semibold text-center max-w-[200px] mx-auto py-[20px]'>Da li ste sigurni da želite obrisati kviz?</p>
           <div className='flex gap-[20px]'>
             <Button
-              type="secondary"
+              style="secondary"
               label="Poništi"
               additionalClass="w-full"
               onClickFunction={closeDeleteModal}
             />
             <Button
-              type="primary"
+              style="primary"
               label="Obriši"
               additionalClass="w-full"
               onClickFunction={handleDeleteQuiz}
@@ -70,7 +70,7 @@ export default function Home() {
             <Button
               label="Kreiraj novi kviz"
               icon={plusIcon}
-              type="primary"
+              style="primary"
             />
           </Link>
         </div>

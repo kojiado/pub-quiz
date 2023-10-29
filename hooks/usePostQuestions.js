@@ -1,12 +1,15 @@
 import { useState } from 'react';
+import { useApiUrl } from './useApiUrl'; // Import the useApiUrl hook
 
 export function usePostQuestions() {
+  const apiUrl = useApiUrl();
+  
   const postQuestions = async (newQuestions) => {
     const successfulAdditions = [];
 
     for (const question of newQuestions) {
       try {
-        const res = await fetch("http://localhost:3001/questions", {
+        const res = await fetch(`${apiUrl}/questions`, {
           method: "POST",
           body: JSON.stringify({
             question: question.question,

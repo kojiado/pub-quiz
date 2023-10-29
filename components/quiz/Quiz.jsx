@@ -12,7 +12,7 @@ const Quiz = ({name, quizId, deleteQuiz}) => {
         </p>
         <div className='flex gap-[12px] min-w-fit'>
           <Button 
-            type="secondary"
+            style="secondary"
             icon={trashIcon}
             label="Obriši kviz"
             additionalClass="responsive"
@@ -24,7 +24,7 @@ const Quiz = ({name, quizId, deleteQuiz}) => {
           />
           <Link href={`/quiz/${quizId}`}>
             <Button 
-              type="primary"
+              style="primary"
               icon={playIcon}
               label="Započni kviz"
               additionalClass="responsive"

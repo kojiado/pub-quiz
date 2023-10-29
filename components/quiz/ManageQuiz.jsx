@@ -96,7 +96,9 @@ export default function ManageQuiz ({questionsList, requestType, id}) {
     }
   }, [quiz])
 
-  const createQuiz = async () => {
+  const createQuiz = async (e) => {
+    event.preventDefault();
+    
     const quizData = {
       name: quizName,
       questions,
@@ -151,7 +153,7 @@ export default function ManageQuiz ({questionsList, requestType, id}) {
           value={quizName}
         />
         <Button 
-          type="secondary"
+          style="secondary"
           label="Recikliraj pitanje"
           onClickFunction={addOldQuestion}
           additionalClass="w-full sm:w-fit"
@@ -169,14 +171,14 @@ export default function ManageQuiz ({questionsList, requestType, id}) {
       ))}
       <div className="flex flex-col gap-[20px] ss:flex-row justify-between mb-[50px]">
         <Button
-          type="secondary"
+          style="secondary"
           label="Dodaj pitanje"
           icon={plusIcon}
           onClickFunction={addQuestion}
           additionalClass="w-full ss:w-fit"
         />
         <Button
-          type="primary"
+          style="primary"
           label={requestType === 'Post' ? 'Kreiraj kviz' : 'Spremi promjene'}
           icon={rocketIcon}
           onClickFunction={requestType === 'Post' ? createQuiz : () => updateQuiz(id)}

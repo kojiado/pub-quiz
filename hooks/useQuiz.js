@@ -1,14 +1,16 @@
 "use client"
 
+import { useApiUrl } from './useApiUrl'; // Import the useApiUrl hook
 import { useState, useEffect } from 'react';
 
 export function useQuiz(id) {
+  const apiUrl = useApiUrl();
   const [quizData, setQuizData] = useState(null);
 
   useEffect(() => {
     const fetchQuiz = async () => {
       try {
-        const res = await fetch(`http://localhost:3001/quizzes/${id}`);
+        const res = await fetch(`${apiUrl}/quizzes/${id}`);
         const data = await res.json();
         setQuizData(data);
       } catch (error) {

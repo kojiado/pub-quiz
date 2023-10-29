@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
+import { useApiUrl } from './useApiUrl'; // Import the useApiUrl hook
 
 export function useDeleteQuiz() {
+  const apiUrl = useApiUrl();
+
   const deleteQuiz = async (id) => {
     try {
-      const res = await fetch(`http://localhost:3001/quizzes/${id}`, {
+      const res = await fetch(`${apiUrl}/quizzes/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
