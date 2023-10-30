@@ -1,4 +1,4 @@
-import ManageQuiz from "@/components/quiz/ManageQuiz";
+import UpdateQuiz from "@/components/quiz/UpdateQuiz";
 
 export async function generateMetadata({ params, searchParams }, parent) {
   const id = params.id
@@ -14,8 +14,7 @@ export default async function Update({ params }) {
   const id = params.id;
 
   return (
-    <ManageQuiz
-      requestType="Put"
+    <UpdateQuiz
       id={id}
     />
   )

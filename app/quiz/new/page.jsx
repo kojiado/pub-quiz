@@ -1,5 +1,4 @@
-import ManageQuiz from "@/components/quiz/ManageQuiz"
-import CreateEmptyQuestions from "@/lib/CreateEmptyQuestions";
+import CreateQuiz from "@/components/quiz/CreateQuiz";
 
 export const metadata = {
   title: 'Novi Kviz',
@@ -7,12 +6,7 @@ export const metadata = {
 }
 
 export default async function Page() {
-  const questionList = CreateEmptyQuestions();
-
   return (
-    <ManageQuiz
-      questionsList={questionList}
-      requestType="Post"
-    />
+    <CreateQuiz/>
   )
 }

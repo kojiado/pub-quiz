@@ -14,9 +14,8 @@ import { useQuestions } from "@/hooks/useQuestions"
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-hot-toast';
 
-export default function ManageQuiz ({questionsList, requestType, id}) {
+export default function ManageQuiz ({questionsList, requestType, id, quiz, isLoading}) {
   const router = useRouter()
-  const {quiz, isLoading} = useQuiz(id);
   const [quizName, setQuizName] = useState("");
   const [questions, setQuestions] = useState([]);
   const oldQuestions = useQuestions();
@@ -153,7 +152,7 @@ export default function ManageQuiz ({questionsList, requestType, id}) {
           textarea={false}
           additionalClass="w-full sm:max-w-[400px]"
           onChange={handleQuizNameChange}
-          value={quizName}
+          value={quizName ? quizName : ''}
         />
         <Button 
           style="secondary"
@@ -162,7 +161,7 @@ export default function ManageQuiz ({questionsList, requestType, id}) {
           additionalClass="w-full sm:w-fit"
         />
       </div>
-      {questions?.map((question, index) => (
+      {questions?.map((question,index) => (
         <NewQuestion
           key={index}
           questionNum={index+1}

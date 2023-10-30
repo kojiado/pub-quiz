@@ -3,11 +3,11 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { playIcon, trashIcon } from "@/utils/icons";
 
-const Quiz = ({name, quizId, deleteQuiz, key}) => {
+const Quiz = ({name, quizId, deleteQuiz}) => {
   const router = useRouter()
 
   return (  
-    <div key={key} onClick={() => router.push(`/quiz/update/${quizId}`)} 
+    <div onClick={() => router.push(`/quiz/update/${quizId}`)} 
       className='flex items-start justify-between cursor-pointer bg-[#393536] border-[1px] border-solid border-[#4F4C4D] p-[20px] rounded-[10px] gap-[20px]cursor-pointer hover:bg-[#4F4C4D]'>
       <p className='text-white text-[20px] font-semibold my-auto'>
         {name}

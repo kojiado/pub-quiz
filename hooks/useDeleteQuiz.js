@@ -13,7 +13,7 @@ export function useDeleteQuiz() {
         },
       });
 
-      if (res.status === 204) {
+      if (res.status === 200) {
         console.log('Quiz Successfully Deleted');
       } else {
         console.error('Error deleting Quiz:', res.status);
