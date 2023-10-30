@@ -4,20 +4,21 @@ import Button from '@/components/ui/Button';
 import Quiz from '@/components/quiz/Quiz'
 import Modal from '@/components/ui/Modal';
 import Link from 'next/link';
+import QuizSkeleton from '@/components/skeleton/QuizSkeleton';
 import { useQuizzes } from '@/hooks/useQuizzes';
 import { plusIcon } from '@/utils/icons';
 import { useState, useEffect } from 'react';
 import { useDeleteQuiz } from '@/hooks/useDeleteQuiz';
-import { toast } from 'react-hot-toast';
+import { toast, Toaster } from 'react-hot-toast';
 
 export default function Home() {
-  //const [quizzes, setQuizzes] = useState([]);
   const [refresher, setRefresher] = useState(true);
-  const quizzes = useQuizzes(refresher);
+  const { quizzes, isLoading } = useQuizzes(refresher);
   const [currentQuizId, setCurrentQuizId] = useState('');
   const [currentQuizName, setCurrentQuizName] = useState('');
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const {deleteQuiz} = useDeleteQuiz();
+  const emptyArray = new Array(5).fill(null);
 
   const openDeleteModal = (quizId,name) => {
     setIsDeleteModalOpen(true);
@@ -38,6 +39,10 @@ export default function Home() {
     setRefresher(!refresher);
     toast.success('Kviz uspješno obrisan.');
   };
+
+  const showLoading = () => {
+    toast('hello', { toasterId: 'unique-id-here' });
+  }
 
   return (
     <div className=''>
@@ -75,13 +80,19 @@ export default function Home() {
           </Link>
         </div>
         <div className='flex flex-col my-[60px] gap-[10px]'>
-          {quizzes?.map((quiz) =>(
-            <Quiz
-              name={quiz.name}
-              quizId={quiz.id}
-              deleteQuiz={() => openDeleteModal(quiz.id,quiz.name)}
-            />
-          ))}
+          {isLoading ? (
+            emptyArray.map((quiz) =>(
+              <QuizSkeleton/>
+            ))
+          ):(
+            quizzes?.map((quiz) =>(
+              <Quiz
+                name={quiz.name}
+                quizId={quiz.id}
+                deleteQuiz={() => openDeleteModal(quiz.id,quiz.name)}
+              />
+            ))
+          )}
         </div>
       </div>
     </div>

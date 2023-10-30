@@ -3,6 +3,7 @@
 import Input from "@/components/ui/Input"
 import NewQuestion from "./NewQuestion"
 import Button from "@/components/ui/Button"
+import ManageQuizSkeleton from "../skeleton/ManageQuizSkeleton"
 import { usePostQuestions } from "@/hooks/usePostQuestions"
 import { usePutQuiz } from "@/hooks/usePutQuiz"
 import { usePostQuiz } from "@/hooks/usePostQuiz"
@@ -15,7 +16,7 @@ import { toast } from 'react-hot-toast';
 
 export default function ManageQuiz ({questionsList, requestType, id}) {
   const router = useRouter()
-  const quiz = useQuiz(id);
+  const {quiz, isLoading} = useQuiz(id);
   const [quizName, setQuizName] = useState("");
   const [questions, setQuestions] = useState([]);
   const oldQuestions = useQuestions();
@@ -132,7 +133,9 @@ export default function ManageQuiz ({questionsList, requestType, id}) {
     }
   }
 
-  return (
+  return isLoading? (
+      <ManageQuizSkeleton/>
+    ):(
     <div className="flex flex-col gap-[40px]">
       <div className='flex flex-col'>
         <h2 className='text-white text-[22px] font-bold'>

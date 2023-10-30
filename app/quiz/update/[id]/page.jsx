@@ -10,7 +10,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
   }
 }
 
-export default function Update({ params }) {
+export default async function Update({ params }) {
   const id = params.id;
 
   return (

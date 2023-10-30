@@ -123,6 +123,8 @@
   }
 }
 
+/* QUIZ SLIDESHOW */
+
 .question-title, .answer-title, .question-title-input label, .answer-title-input label {
   border-radius: 10px;
   color: white;
@@ -197,4 +199,32 @@ label {
 
 textarea {
   min-height: 150px;
+}
+
+/* SKELETON */
+
+.skeleton {
+  animation: skeleton-loading 1s linear infinite alternate;
+}
+
+.skeleton-2 {
+  animation: skeleton-loading-2 1s linear infinite alternate;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: hsl(0, 0%, 25%); /* Equivalent to primaryDark color in HSL */
+  }
+  100% {
+    background-color: hsl(0, 0%, 15%); /* Adjust lightness for the ending color as per your preference */
+  }
+}
+
+@keyframes skeleton-loading-2 {
+  0% {
+    background-color: hsl(0, 0%, 40%); /* Equivalent to primaryDark color in HSL */
+  }
+  100% {
+    background-color: hsl(0, 0%, 30%); /* Adjust lightness for the ending color as per your preference */
+  }
 }

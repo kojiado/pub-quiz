@@ -5,6 +5,7 @@ import { useQuiz } from "@/hooks/useQuiz";
 
 import Question from '@/components/quiz/Question';
 import Button from '@/components/ui/Button';
+import { Suspense } from 'react';
 
 import { Splide, SplideSlide, } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
