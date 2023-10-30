@@ -85,8 +85,9 @@ export default function Home() {
               <QuizSkeleton/>
             ))
           ):(
-            quizzes?.map((quiz) =>(
+            quizzes?.map((quiz,index) =>(
               <Quiz
+                key={index}
                 name={quiz.name}
                 quizId={quiz.id}
                 deleteQuiz={() => openDeleteModal(quiz.id,quiz.name)}

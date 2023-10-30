@@ -2,9 +2,9 @@ import Button from "../ui/Button";
 import Link from "next/link";
 import { playIcon, trashIcon } from "@/utils/icons";
 
-const Quiz = ({name, quizId, deleteQuiz}) => {
+const Quiz = ({name, quizId, deleteQuiz, key}) => {
   return (  
-    <Link href={`/quiz/update/${quizId}`}>
+    <Link key={key} href={`/quiz/update/${quizId}`}>
       <div 
         className='flex items-start justify-between bg-[#393536] border-[1px] border-solid border-[#4F4C4D] p-[20px] rounded-[10px] gap-[20px]cursor-pointer hover:bg-[#4F4C4D]'>
         <p className='text-white text-[20px] font-semibold my-auto'>

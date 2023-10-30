@@ -60,6 +60,7 @@ export default function QuizSlideshow({id}) {
           >
             {quiz?.questions?.map((question,index)=>(
               <Question
+                key={index}
                 question={question.question}
                 answer={question.answer}
                 questionNum={index+1}

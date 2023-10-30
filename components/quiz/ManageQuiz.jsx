@@ -164,6 +164,7 @@ export default function ManageQuiz ({questionsList, requestType, id}) {
       </div>
       {questions?.map((question, index) => (
         <NewQuestion
+          key={index}
           questionNum={index+1}
           question={question.question}
           answer={question.answer}

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Button from '../ui/Button';
 import { eyeIcon } from '@/utils/icons';
 
-const Question = ({question, answer, questionNum}) => {
+const Question = ({question, answer, questionNum, key}) => {
   const [isAnswerVisible, setIsAnswerVisible] = useState(false);
 
   const showAnswer = () => {
@@ -11,7 +11,7 @@ const Question = ({question, answer, questionNum}) => {
   }
   
   return (
-    <SplideSlide>
+    <SplideSlide key={key}>
       <div className='flex flex-col gap-[60px]'>
         <div className='flex flex-col gap-[20px]'>
           <p className='question-title'>Pitanje broj {questionNum}</p>
