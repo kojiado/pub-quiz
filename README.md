@@ -37,7 +37,7 @@ To run the Pub Quiz App locally, follow these steps:
 1. Clone the repository: `git clone https://github.com/kojiado/pub-quiz.git`
 2. Install dependencies: `npm install`
 3. Start the Next.js development server: `npm run dev`
-4. Start the json-server for the mock API: `json-server db.json --port 3001`
+4. In a separate terminal window, start the json-server for the mock API with the following command:: `json-server db.json --port 3001`
 
 The application will be accessible at `http://localhost:3000/`.
 
