@@ -8,7 +8,7 @@ The Pub Quiz App is a web application built with Next.js that allows administrat
 
 ## Features
 
-- **Quiz Creation**: Users have the power to craft engaging quizzes effortlessly. Create your questions and answers, or recycle questions from previous quizzes if you're feeling nostalgic.
+- **Quiz Creation**: Users have the power to craft engaging quizzes effortlessly. Create your questions and answers.
 
 - **Quiz Editing**: Got some changes to make? No problem! You can easily update your quizzes, swap out questions, and fine-tune your content.
 
@@ -24,11 +24,12 @@ The Pub Quiz App is a web application built with Next.js that allows administrat
 
 The Pub Quiz App is built using the following technologies:
 
+- **React**: A JavaScript library for building interactive and user-friendly web interfaces.
+
 - **Next.js**: A popular React framework for developing server-rendered web applications.
 
-- **json-server**: A simple JSON-based backend mock API for fast development and testing.
+- **Tailwind CSS**: A utility-first CSS framework for efficient UI development.
 
-- **React**: A JavaScript library for building interactive and user-friendly web interfaces.
 
 ## Installation
 
@@ -42,7 +43,7 @@ To run the Pub Quiz App locally, follow these steps:
 
 The application will be accessible at `http://localhost:3000/`.
 
-Please note that for a real-world scenario, you would typically implement authentication and authorization to ensure secure access to these features. In this example, the app allows anyone to create, edit, and delete quizzes for demonstration purposes.
+In a real-world scenario, it is crucial to implement authentication and authorization to ensure secure access to application features. For the purposes of this example, the app currently allows anyone to create, edit, and delete quizzes for demonstration purposes.
 
 
 Thank you for exploring the Pub Quiz App. If you have any questions or feedback, please feel free to reach out.
