@@ -5,6 +5,7 @@ import Quiz from '@/components/quiz/Quiz'
 import Modal from '@/components/ui/Modal';
 import Link from 'next/link';
 import QuizSkeleton from '@/components/skeleton/QuizSkeleton';
+import { useRouter } from 'next/navigation';
 import { useQuizzes } from '@/hooks/useQuizzes';
 import { plusIcon } from '@/utils/icons';
 import { useState, useEffect } from 'react';
@@ -19,6 +20,7 @@ export default function Home() {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const {deleteQuiz} = useDeleteQuiz();
   const emptyArray = new Array(5).fill(null);
+  const router = useRouter();
 
   const openDeleteModal = (quizId,name) => {
     setIsDeleteModalOpen(true);
@@ -71,18 +73,22 @@ export default function Home() {
             <h2 className='text-white text-[22px] font-bold'>Kvizovi</h2>
             <p className='text-[16px] text-primary_variant_3'>Ispod možete pronaći listu svih kvizova</p>
           </div>
-          <Link className='w-full ss:w-fit' href={"/quiz/new"}>
-            <Button
-              label="Kreiraj novi kviz"
-              icon={plusIcon}
-              style="primary"
-            />
-          </Link>
+          <Button
+            label="Kreiraj novi kviz"
+            icon={plusIcon}
+            style="primary"
+            onClickFunction={(e) => {
+              e.stopPropagation();
+              router.push('/quiz/new');
+            }}
+          />
         </div>
         <div className='flex flex-col my-[60px] gap-[10px]'>
           {isLoading ? (
-            emptyArray.map((quiz) =>(
-              <QuizSkeleton/>
+            emptyArray.map((item,index) =>(
+              <QuizSkeleton
+                key={index}
+              />
             ))
           ):(
             quizzes?.map((quiz,index) =>(
